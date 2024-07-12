@@ -42,14 +42,18 @@ export default function LoanForm() {
    
     } else {
  
-      setShowModal(true); // Show modal after successful form submission
+     // Show modal after successful form submission
       console.log("Form submitted successfully:", submitParams);
+      setmessage(null)
     }
+    setShowModal(true); 
   };
   let buttonactive=(inputValue.name==="" ||inputValue.phone==="" || inputValue.age==="" );
   return (
 
-    <div style={{
+    <div
+    onClick={()=>{setShowModal(false);}}
+    style={{
       position: 'fixed',
       top: 0,
       left: 0,
@@ -58,7 +62,7 @@ export default function LoanForm() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#180F38'
+      backgroundColor: '#160452'
     }}>
       <form onSubmit={handleSubmit} style={{
         backgroundColor: "#2504E0",

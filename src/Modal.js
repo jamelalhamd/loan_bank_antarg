@@ -1,15 +1,17 @@
 import "./App.css";
 
-export default function Modal({ show = false, message }) {
-  if (!show ) {
+export default function Modal({ show = false, message = null }) {
+  if (!show) {
     return null;
-  } else if(show) {
-    return (
-      <div id='modal'>
-        <div id="modal-content">
-          <h1>You have been successfully registered!</h1>
-        </div>
-      </div>
-    );
   }
+
+  return (
+    <div id='modal'>
+      <div id="modal-content">
+        <h1 style={{ color: message == null ? "green" : "red" }}>
+          {message == null ? "You have been successfully registered!" : message}
+        </h1>
+      </div>
+    </div>
+  );
 }
