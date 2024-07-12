@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import Modal from './Modal';
 export default function LoanForm() {
   const initialInputValue = {
     name: "",
@@ -8,9 +8,11 @@ export default function LoanForm() {
     student: false,
     salary: "",
   };
-
+  
+  const [showModal, setShowModal] = useState(false);
   const [inputValue, setInputValue] = useState(initialInputValue);
-
+  const [message,setmessage] = useState("");
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     const submitParams = {
@@ -21,23 +23,32 @@ export default function LoanForm() {
       salary: inputValue.salary,
     };
 
+
+   
     if (!submitParams.name) {
-      alert("Please write a name");
+        setmessage("Please write a name ");
+
     } else if (!submitParams.age) {
-      alert("Please write the age");
+        setmessage("Please write the age ");
+  
     } else if (submitParams.age < 18 || submitParams.age > 70) {
-      alert("Please provide an age between 18 and 70");
+        setmessage("Please provide an age between 18 and 70");
+      
     } else if (!submitParams.phone) {
-      alert("Please write the phone");
+        setmessage("Please write the phone");
+     
     } else if (submitParams.phone.length < 5 || submitParams.phone.length > 12) {
-      alert("Please write a correct number");
+        setmessage("Please write a correct number");
+   
     } else {
-      alert("Form submitted successfully");
+ 
+      setShowModal(true); // Show modal after successful form submission
       console.log("Form submitted successfully:", submitParams);
     }
   };
-
+  let buttonactive=(inputValue.name==="" ||inputValue.phone==="" || inputValue.age==="" );
   return (
+
     <div style={{
       position: 'fixed',
       top: 0,
@@ -124,8 +135,10 @@ export default function LoanForm() {
           </select>
         </div>
         <br />
-        <button style={{ backgroundColor: '#EE0968', color: 'white' }} type="submit">Submit</button>
+        <button id="btn-sbt"  disabled={buttonactive} style={{  backgroundColor: buttonactive?"#C9BEC3": '#EE0968', color: 'white' }} type="submit">Submit</button>
       </form>
+
+      <Modal show={showModal} message={message}/>
     </div>
   );
 }

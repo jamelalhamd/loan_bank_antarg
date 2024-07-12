@@ -1,5 +1,6 @@
 
 import './App.css';
+import Modal from './Modal';
 import Myform from './myForm';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
    borderRadius:"10px" ,border:'5px blue solid',
    marginBottom:"auto",marginTop:"auto"}}>
    <Myform/>
+   <Modal/>
    </div>
 
 
